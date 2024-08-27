@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+         
+     body {
+            /*background-image: url('/home/apmosys/Downloads/8.jpg'); /* Replace with your image URL */
+            background-color: rgb(202, 202, 202);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+     
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #343a40;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .tableFixHead {
+            overflow-y: auto;
+            height: 400px;
+            margin-top: 20px;
+        }
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+            background: #343a40;
+            color: white;
+            z-index: 1;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        hr {
+            border-top: 2px solid #343a40;
+        }
+        .welcome-text {
+            color: #565656;
+            font-size: x-large;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .patient-list-text {
+            color: #565656;
+            font-size: xx-large;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .table-header th {
+            background-color: #343a40;
+            color: white;
+        }
+        .table-actions button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+  <nav style="margin:auto" class="navbar navbar-expand-lg bg-dark">
+    <a style="color: white;" class="navbar-brand" href="#">EKA HOSPITALS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a style="color: white;" class="nav-link active" aria-current="page" href="javascript:void(0);" routerLink="/create-patient">Add-Patient</a>
+            </li>
+            <li class="nav-item">
+                <a style="color: white;" class="nav-link active" aria-current="page" href="javascript:void(0);" routerLink="/medicinelist">View-Medicines</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="mx-2 ml-auto">
+            <button style="margin: 5px;" class="btn btn-danger"><a style="color:white;" href="javascript:void(0);" routerLink="/home">Logout</a></button>
+        </div>
+    </div>
+</nav>
+
+<div class="grid">
+    <div class="container">
+        <hr>             
+        <h2>Dashboard</h2>
+        <div class="welcome-text">
+            <marquee behavior="scroll" direction="left">Welcome to Dashboard. Please find the patient list below!! Click Appointments to view and update Appointments, Click Add Appointment to add new Appointment</marquee>
+        </div>
+        <hr>
+        <br>
+        <div class="patient-list-text">Current Patient List in the Queue</div>
+        <div class="tableFixHead">
+            <table class="table table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Dose</th>
+                        <th>Blood-Group</th>
+                        <th>Prescription</th>
+                        <th>Urgency</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let patient of patients">
+                        <td>{{patient.id}}</td>
+                        <td>{{patient.name}}</td>
+                        <td>{{patient.age}}</td>
+                        <td>{{patient.dose}}</td>
+                        <td>{{patient.blood_group}}</td>
+                        <td>{{patient.prescription}}</td>
+                        <td>{{patient.urgency}}</td>
+                        <td class="table-actions">
+                            <button (click)="update(patient.id)" class="btn btn-success">Update</button>
+                            <button (click)="deletePatient(patient.id)" class="btn btn-danger">Delete</button>
+                            <button (click)="view(patient.id)" class="btn btn-info">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
