@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appointment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        .form-group label {
+            color: #495057;
+        }
+        .form-control {
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+<nav style="margin:auto" class="navbar navbar-expand-lg bg-dark">
+    <a style="color: white;" class="navbar-brand" href="#">EKA HOSPITALS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="javascript:void(0);" routerLink="/appointmentlist">Back</a>
+          </li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="text-center">Add Appointment</h2>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" name="name" placeholder="Enter Name" [(ngModel)]="appointment.name" required pattern="[a-zA-Z ]*"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" class="form-control" name="age" placeholder="Enter Age" [(ngModel)]="appointment.age" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="symptoms">Symptoms</label>
+            <input type="text" id="symptoms" class="form-control" name="symptoms" placeholder="Enter Symptoms" [(ngModel)]="appointment.symtomps" />
+        </div>
+        
+        <div class="form-group">
+            <label for="number">Number</label>
+            <input type="text" id="number" class="form-control" name="number" placeholder="Enter Number" [(ngModel)]="appointment.number" />
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

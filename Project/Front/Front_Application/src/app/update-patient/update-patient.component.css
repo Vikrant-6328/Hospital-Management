@@ -1,0 +1,25 @@
+.form-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #343a40;
+}
+
+input::placeholder {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

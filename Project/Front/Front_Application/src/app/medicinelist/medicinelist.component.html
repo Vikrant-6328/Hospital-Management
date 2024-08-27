@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #343a40;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .tableFixHead {
+            overflow-y: auto;
+            height: 400px;
+            margin-top: 20px;
+        }
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+            background: #343a40;
+            color: white;
+            z-index: 1;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        hr {
+            border-top: 2px solid #343a40;
+        }
+        .welcome-text {
+            color: #565656;
+            font-size: 25px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<nav style="margin:auto" class="navbar navbar-expand-lg bg-dark">
+    <a style="color: white;" class="navbar-brand" href="#">EKA HOSPITALS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="javascript:void(0);" routerLink="/createmedicine">Add Medicine</a>
+        </li>
+        <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="javascript:void(0);" routerLink="/docdash">Back</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<div class="grid">
+    <div class="container">
+        
+        <h2>Medicine List</h2>
+        
+        <br>
+        <div class="welcome-text">Welcome to the Medicine List Page, Click "Add Medicine" to Add Medicines:</div>
+        <div class="tableFixHead">
+            <hr>
+            <table class="table table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Drug-Name</th>
+                        <th>Stock</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medicine of medicines">
+                        <td>{{medicine.id}}</td>
+                        <td>{{medicine.drugname}}</td>
+                        <td>{{medicine.stock}}</td>
+                        <td>
+                            <button type="submit" (click)="update(medicine.id)" class="btn btn-info">Update</button>
+                            <button (click)="delete(medicine.id)" style="margin-left: 10px" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
